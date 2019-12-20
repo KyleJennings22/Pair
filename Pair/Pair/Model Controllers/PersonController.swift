@@ -22,6 +22,12 @@ class PersonController {
     saveToPersistentStore()
   }
   
+  func deletePerson(person: Person) {
+    guard let index = people.firstIndex(of: person) else {return}
+    people.remove(at: index)
+    saveToPersistentStore()
+  }
+  
   func fileURL() -> URL {
       let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
       let fileName = "people.json"

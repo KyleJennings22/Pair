@@ -69,6 +69,15 @@ class PairListTableViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        let person = PersonController.shared.people[indexPath.row]
+        PersonController.shared.deletePerson(person: person)
+        count = 0
+        tableView.reloadData()
+      }
+  }
+  
   // MARK: - Custom Functions
   func newPersonAlert() {
     let alertController = UIAlertController(title: "Add Person", message: "Add someone new to the list.", preferredStyle: .alert)
